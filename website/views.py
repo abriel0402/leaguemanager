@@ -3,7 +3,7 @@ from django.shortcuts import render
 
 
 
-teams = []
+teams = ["Test"]
 
 
 
@@ -28,5 +28,8 @@ def schedule(request):
 
 def settings(request):
 
-
     return render(request, "website/settings.html")
+
+def teamManagement(request):
+    
+    return render(request, 'website/teamManagement.html')

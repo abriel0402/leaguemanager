@@ -9,5 +9,6 @@ urlpatterns = [
     path("stats/", views.stats, name="stats"),
     path("schedule/", views.schedule, name="schedule"),
     path("settings/", views.settings, name="settings"),
+    path("team-management/", views.teamManagement, name="teamManagement"),
 
 ]
