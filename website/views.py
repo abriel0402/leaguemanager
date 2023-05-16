@@ -1,21 +1,41 @@
 from django.shortcuts import render
-
+import random
 from website.forms import *
 
 
-TEAMS = Team.objects.all()
 
 
 
+def getTeams():
+    TEAMS_OBJECTS = Team.objects.all()
+    TeamsList = []
+    for obj in TEAMS_OBJECTS:
+        TeamsList.append(obj)
+    return TeamsList
 
 
-
-
-
-
-
-
-
+#n = num of games
+#teams = shuffled teams
+def generateSchedule(weeks):
+    teams = getTeams()
+    schedule = []
+    if len(teams) % 2 == 0:
+        for i in range(weeks):
+            teams = getTeams()
+            while len(teams) != 0:
+                n = random.randint(0,len(teams)-1)
+                team1 = teams[n]
+                teams.remove(team1)
+                n = random.randint(0,len(teams)-1)
+                team2 = teams[n]
+                teams.remove(team2)
+                game = [team1, team2]
+                schedule.append(game)
+                
+            
+   
+    return schedule
+    
 
 # Create your views here.
 
@@ -23,19 +43,13 @@ def index(request):
     return render(request, "website/index.html")
 
 def standings(request):
-    TEAMS_OBJECTS = Team.objects.all()
-    TeamsList = []
-    for obj in TEAMS_OBJECTS:
-        TeamsList.append(obj)
+    TEAMS = getTeams()
     def sortWins(e):
         return e.wins
-    TeamsList.sort(reverse=True, key=sortWins)
-
-
-
+    TEAMS.sort(reverse=True, key=sortWins)
 
     return render(request, "website/standings.html", {
-        "sorted": TeamsList,
+        "sorted": TEAMS,
     })
 
 
@@ -44,7 +58,15 @@ def stats(request):
 
 
 def schedule(request):
-    return render(request, "website/schedule.html")
+    TEAMS = getTeams()
+    random.shuffle(TEAMS)
+    schedule = generateSchedule((len(TEAMS)-1)*2)
+
+
+
+    return render(request, "website/schedule.html", {
+        "schedule": schedule,
+    })
 
 def settings(request):
 
@@ -58,7 +80,6 @@ def teamManagement(request):
         print(request.POST)
         if form.is_valid():
             form.save()
-            print("saved")
     
     TEAMS = Team.objects.all()
 

@@ -18,6 +18,9 @@ class Player(models.Model):
     last = models.CharField(max_length=32)
     number = models.IntegerField()
     #team
+    #games
+    #stats
 
     def __str__(self):
         return self.first + " " + self.last
+    

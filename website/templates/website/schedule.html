@@ -20,6 +20,10 @@
     <div>
         <h2 class="text-center py-3">Schedule</h2>
     </div>
-    
+    <div class="text-center">
+        {% for game in schedule %}
+            <p>{{game.0}} vs {{game.1}}</p>
+        {% endfor %}
+    </div>
 </body>
 </html>
