@@ -20,5 +20,14 @@
     <div>
         <h2 class="text-center py-3">Standings</h2>
     </div>
+    <div>
+        <ul>
+        {% for team in sorted %}
+            <li>
+                <a>{{team}}</a>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
 </body>
 </html>

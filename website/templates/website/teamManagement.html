@@ -20,6 +20,31 @@
     <div>
         <h2 class="text-center py-3">Team Management</h2>
     </div>
+    <div class="text-center">
+        <ul>
+        {% for team in teams %}
+        <li>
+            <a>{{team}} </a>
+        </li>
+        {% endfor %}
+        </ul>
+    </div>
+
+    <div>
+        <h2 class="text-center">Create New Team</h2>
+        <div>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="row col justifycontent-center">
+                City {{form.city}}
+            </div>
+            <div class="row col justifycontent-center">
+                Name {{form.name}}
+            </div>
+            <button class="btn btn-primary" type="submit">Submit</button>
+        </form>
+    </div>
+    </div>
         
 </body>
 </html>
