@@ -20,11 +20,11 @@
     <div>
         <h2 class="text-center py-3">Standings</h2>
     </div>
-    <div>
-        <ul>
+    <div class="text-center">
+        <ul class="list-unstyled">
         {% for team in sorted %}
-            <li>
-                <a>{{team}}</a>
+            <li class="p-1">
+                <a href="{% url 'team' team.id %}">{{team}}: {{team.wins}}-{{team.losses}}</a>
             </li>
         {% endfor %}
         </ul>

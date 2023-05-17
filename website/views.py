@@ -17,6 +17,7 @@ def getTeams():
 #n = num of games
 #teams = shuffled teams
 def generateSchedule(weeks):
+
     teams = getTeams()
     schedule = []
     if len(teams) % 2 == 0:
@@ -33,7 +34,6 @@ def generateSchedule(weeks):
                 schedule.append(game)
                 
             
-   
     return schedule
     
 
@@ -62,8 +62,6 @@ def schedule(request):
     random.shuffle(TEAMS)
     schedule = generateSchedule((len(TEAMS)-1)*2)
 
-
-
     return render(request, "website/schedule.html", {
         "schedule": schedule,
     })
@@ -87,4 +85,32 @@ def teamManagement(request):
     return render(request, 'website/teamManagement.html', {
         "teams": TEAMS,
         "form": form,
+    })
+
+def playerManagement(request):
+    return render(request, 'website/playerManagement.html', {
+
+    })
+
+def leagueManagement(request):
+    
+
+    return render(request, 'website/leagueManagement.html', {
+
+    })
+
+def team(request, teamID):
+    team = Team.objects.get(pk=teamID)
+    roster = Player.objects.filter(team=team)
+    
+    return render(request, 'website/team.html', {
+        "team": team,
+        "roster": roster,
+    })
+
+def player(request, playerID):
+    player = Player.objects.get(pk=playerID)
+
+    return render(request, 'website/player.html', {
+        "player": player,
     })

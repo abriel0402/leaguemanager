@@ -17,11 +17,19 @@
     </nav>
 </head>
 <body>
-    <h2 class="text-center py-3">Settings</h2>
-    <div class="text-center py-2">
-        <h4><a href="{% url 'teamManagement' %}">Team Management</a></h4>
-        <h4><a href="{% url 'playerManagement' %}">Player Management</a></h4>
-        <h4><a href="{% url 'leagueManagement' %}">League Management</a></h4>
+    <div class="text-center py-3">
+        <h2>{{team}}</h2>
+        <h4>{{team.wins}}-{{team.losses}}</h4>
+    </div>
+    <div class="text-center p-1">
+        <h3 class="pb-1">Roster</h3>
+        <ul class="list-unstyled">
+            {% for player in roster %}
+            <li>
+                <a href="{% url 'player' player.id %}">{{player}}</a>
+            </li>
+            {% endfor %}
+        </ul>
     </div>
 </body>
 </html>

@@ -21,10 +21,10 @@
         <h2 class="text-center py-3">Team Management</h2>
     </div>
     <div class="text-center">
-        <ul>
+        <ul class="list-unstyled">
         {% for team in teams %}
         <li>
-            <a>{{team}} </a>
+            <a href="{% url 'team' team.id %}">{{team}} </a>
         </li>
         {% endfor %}
         </ul>
@@ -33,15 +33,15 @@
     <div>
         <h2 class="text-center">Create New Team</h2>
         <div>
-        <form action="" method="post">
+        <form class="text-center" action="" method="post">
             {% csrf_token %}
-            <div class="row col justifycontent-center">
-                City {{form.city}}
+            <div class="p-1col justifycontent-center">
+                City&nbsp;&nbsp;{{form.city}}
             </div>
-            <div class="row col justifycontent-center">
-                Name {{form.name}}
+            <div class="p-1 col justifycontent-center">
+                Name&nbsp;&nbsp;{{form.name}}
             </div>
-            <button class="btn btn-primary" type="submit">Submit</button>
+            <button class="p-2 btn btn-primary" type="submit">Submit</button>
         </form>
     </div>
     </div>
